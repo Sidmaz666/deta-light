@@ -38,7 +38,7 @@ function write_prompt(mode,text,by){
   } else {
 	const select_parent = document.getElementById('image_msg_div')
 	const html2write = `
-	<pre class="w-full bg-gray-300 p-2 whitespace-pre-wrap ${by == "You" ? 'nohighlight' : ''}">${by == "AI" ? '<span class="text-green-500">' + by + '</span>' : '<span class="text-blue-500">' + by + " " + '</span>' }<code class="rounded-md bg-gray-300">${by == "AI" ? '<img src="'+text+'" alt="AI Generated Image"/>' : text }</code></pre>
+	<pre class="w-full bg-gray-300 p-2 whitespace-pre-wrap ${by == "You" ? 'nohighlight' : ''}">${by == "AI" ? '<span class="text-green-500">' + by + '</span>' : '<span class="text-blue-500">' + by + " " + '</span>' }<code class="rounded-md bg-gray-300">${by == "AI" ? '<img src="'+text+'" alt="AI Generated Image"/><br/>' : text }</code></pre>
 	`
     select_parent.insertAdjacentHTML('beforeEnd', html2write)
     setTimeout(() => {
