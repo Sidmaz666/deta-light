@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome To Deta Light</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      type="text/css"
+      charset="utf-8"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"
+      integrity="sha512-zJYu9ICC+mWF3+dJ4QC34N9RA0OVS1XtPbnf6oXlvGrLGNB8egsEzu/5wgG90I61hOOKvcywoLzwNmPqGAdATA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" integrity="sha512-bgHRAiTjGrzHzLyKOnpFvaEpGzJet3z4tZnXGjpsCcqOnAH6VGUx9frc5bcIhKTVLEiCO6vEhNAgx5jtLUYrfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <div
+      id="initial_page"
+      class="flex w-screen h-screen justify-center items-center sm:flex-row flex-col bg-sky-100 sm:space-x-10 sm:space-y-0 space-y-5 font-mono font-semibold text-gray-700 text-lg"
+    >
+      <div
+        class="transition ease-in-out delay-150 bg-white rounded-xl flex justify-center items-center flex-col pt-2 pb-2 shadow-md hover:scale-95 hover:shadow-2xl cursor-pointer"
+        title="Chat With an AI"
+        onclick="render_page('chat')"
+      >
+        <img src="./assets/chat-icon.gif" alt="Chat Icon" />
+        <span>Chat</span>
+      </div>
+
+      <div
+        class="transition ease-in-out delay-150 bg-white rounded-xl flex justify-center items-center flex-col pt-2 pb-2 shadow-md hover:scale-95 hover:shadow-2xl cursor-pointer"
+        title="Generate Images via Text"
+        onclick="render_page('image')"
+      >
+        <img src="./assets/image-gallery.gif" alt="Image Icon" />
+        <span>Image</span>
+      </div>
+    </div>
+
+    <div
+      id="chat_page"
+      class="flex w-screen h-screen items-start font-mono font-semibold text-gray-700 text-lg flex-col hidden"
+    >
+      <div
+        class="bg-gray-900 w-full p-2 pt-3 text-white flex items-center align-middle justify-between"
+      >
+        <span
+          class="font-mono font-bold text-2xl hover:text-sky-300 cursor-pointer"
+          onclick="render_page('initial')"
+        >
+          <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        </span>
+      </div>
+
+      <div
+        id="chat_msg_div"
+        class="flex flex-col w-full overflow-y-auto h-[88%]"
+      ></div>
+
+      <div
+        id="chat_input_div"
+        class="flex w-full items-center p-2 space-x-5 absolute bottom-0"
+      >
+        <input
+          id="chat_msg_prompt"
+          type="text"
+          placeholder="Enter Your Message!"
+          class="outline-none rounded-xl w-[95%] border-2 border-gray-400 p-2 focus:border-blue-500"
+          onkeydown="if(event.key == 'Enter'){ call_api(this,'chat')}"
+        />
+        <button
+          onclick="call_api(document.getElementById('chat_msg_prompt'),'chat')"
+          class="bg-gray-900 p-2 pl-4 pr-4 text-white rounded-full"
+        >
+          <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="image_page"
+      class="flex w-screen h-screen items-start font-mono font-semibold text-gray-700 text-lg flex-col hidden"
+    >
+      <div
+        class="bg-gray-900 w-full p-2 pt-3 text-white flex items-center align-middle justify-between"
+      >
+        <span
+          class="font-mono font-bold text-2xl hover:text-sky-300 cursor-pointer"
+          onclick="render_page('initial')"
+        >
+          <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        </span>
+      </div>
+
+      <div
+        id="image_msg_div"
+        class="flex flex-col w-full overflow-y-auto h-[88%]"
+      >
+      </div>
+
+      <div
+        id="image_input_div"
+        class="flex w-full items-center p-2 space-x-5 absolute bottom-0"
+      >
+        <input
+          type="text"
+          placeholder="Enter Image Details!"
+	  id="image_prompt"
+          class="outline-none rounded-xl w-[95%] border-2 border-gray-400 p-2 focus:border-blue-500"
+          onkeydown="if(event.key == 'Enter'){ call_api(this,'image')}"
+        />
+        <button class="bg-gray-900 p-2 pl-4 pr-4 text-white rounded-full"
+          onclick="call_api(document.getElementById('image_prompt'),'image')"
+	  >
+          <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
